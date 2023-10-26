@@ -1,5 +1,13 @@
 <script setup>
-
+    import {reactive} from 'vue'
+    const paciente = reactive({
+        nombre: '',
+        propietario:'',
+        email:'',
+        alta:'',
+        sintomas:''
+        
+    })
 </script>
 
 
@@ -15,15 +23,21 @@
         <form class="bg-white shadow-2xl rounded-lg py-10 px-5 mb-10">
             <div class="mb-5">
                 <label for="mascota" class="text-gray-700 uppercase font-bold">Nombre Mascota</label> 
-
-                <input type="text" id="mascota" placeholder="Nombre de la mascota" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md">
+                <input
+                 type="text" 
+                 id="mascota" 
+                 placeholder="Nombre de la mascota" 
+                 class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                 v-model="paciente.nombre"
+                 >
+                
 
             </div>
 
             <div class="mb-5">
                 <label for="propietario" class="text-gray-700 uppercase font-bold">Nombre Propietario</label> 
 
-                <input type="text" id="propietario" placeholder="Nombre del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md">
+                <input type="text" id="propietario" placeholder="Nombre del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" v-model="paciente.propietario">
 
             </div>
 
@@ -31,7 +45,7 @@
             <div class="mb-5">
                 <label for="email" class="text-gray-700 uppercase font-bold">Email</label> 
 
-                <input type="email" id="email" placeholder="Email del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md">
+                <input type="email" id="email" placeholder="Email del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" v-model="paciente.email">
 
             </div>
 
@@ -39,7 +53,7 @@
             <div class="mb-5">
                 <label for="alta" class="text-gray-700 uppercase font-bold">Alta</label> 
 
-                <input type="date" id="date" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md">
+                <input type="date" id="date" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" v-model="paciente.alta">
 
             </div>
 
@@ -47,7 +61,7 @@
             <div class="mb-5">
                 <label for="sintomas" class="text-gray-700 uppercase font-bold">Sintomas</label> 
 
-                <textarea name="sintomas" id="sintomas" placeholder="Describe los síntomas" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40"></textarea>
+                <textarea name="sintomas" id="sintomas" placeholder="Describe los síntomas" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40" v-model="paciente.sintomas"></textarea>
             </div>
 
             <input type="submit" value="Registrar paciente" class="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors">
