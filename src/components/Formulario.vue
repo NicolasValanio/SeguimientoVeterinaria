@@ -7,6 +7,32 @@ const alerta = reactive({
      mensaje: ''
 })
 
+defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:alta', 'update:sintomas'])
+
+const props = defineProps({
+     nombre:{
+          type: String,
+          required: true
+     },
+     propietario:{
+          type: String,
+          required: true
+     },
+     email:{
+          type: String,
+          required: true
+     },
+     alta:{
+          type: String,
+          required: true
+     },
+     sintomas:{
+          type: String,
+          required: true
+     }
+     
+})
+
 const paciente = reactive({
      nombre: '',
      propietario:'',
@@ -45,12 +71,16 @@ const validar = () =>{
         @submit.prevent="validar"
         >
             <div class="mb-5">
+
+
                 <label for="mascota" class="text-gray-700 uppercase font-bold">Nombre Mascota</label> 
                 <input
                  type="text" 
                  id="mascota" 
                  placeholder="Nombre de la mascota" 
                  class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                 @input="$emit('update:nombre' , $event.target.value)"
+                 :value="nombre"
                  >
                  
 
@@ -59,7 +89,7 @@ const validar = () =>{
             <div class="mb-5">
                 <label for="propietario" class="text-gray-700 uppercase font-bold">Nombre Propietario</label> 
 
-                <input type="text" id="propietario" placeholder="Nombre del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" >
+                <input type="text" :value="propietario" id="propietario" placeholder="Nombre del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"   @input="$emit('update:propietario' , $event.target.value)" >
 
             </div>
 
@@ -67,7 +97,7 @@ const validar = () =>{
             <div class="mb-5">
                 <label for="email" class="text-gray-700 uppercase font-bold">Email</label> 
 
-                <input type="email" id="email" placeholder="Email del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md">
+                <input type="email" id="email" :value="email" placeholder="Email del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"  @input="$emit('update:email' , $event.target.value)">
 
             </div>
 
@@ -75,7 +105,7 @@ const validar = () =>{
             <div class="mb-5">
                 <label for="alta" class="text-gray-700 uppercase font-bold">Alta</label> 
 
-                <input type="date" id="date" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" >
+                <input type="date" id="date" :value="alta" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"  @input="$emit('update:alta' , $event.target.value)" >
 
             </div>
 
@@ -83,10 +113,10 @@ const validar = () =>{
             <div class="mb-5">
                 <label for="sintomas" class="text-gray-700 uppercase font-bold">Sintomas</label> 
 
-                <textarea name="sintomas" id="sintomas" placeholder="Describe los síntomas" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40" ></textarea>
+                <textarea name="sintomas" id="sintomas" :value="sintomas" placeholder="Describe los síntomas" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40" ></textarea>
             </div>
 
-            <input type="submit" value="Registrar paciente" class="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors">
+            <input type="submit" value="Registrar paciente" class="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors" @input="$emit('update:sintomas' , $event.target.value)">
         </form>
     </div>
 </template>
